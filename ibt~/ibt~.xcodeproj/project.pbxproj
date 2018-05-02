@@ -13,6 +13,18 @@
 		358B435C1EF2576F000266B2 /* IBT~.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 358B43581EF2576F000266B2 /* IBT~.cpp */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3593975B1F10FE8D0040DFCC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		22CF10220EE984600054F513 /* maxmspsdk.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = maxmspsdk.xcconfig; path = ../../maxmspsdk.xcconfig; sourceTree = SOURCE_ROOT; };
 		2FBBEAE508F335360078DB84 /* ibt~.mxo */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ibt~.mxo"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +90,7 @@
 				2FBBEADA08F335360078DB84 /* Sources */,
 				2FBBEADC08F335360078DB84 /* Frameworks */,
 				2FBBEADF08F335360078DB84 /* Rez */,
+				3593975B1F10FE8D0040DFCC /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -186,7 +199,6 @@
 					JitterAPI,
 					"$(C74_SYM_LINKER_FLAGS)",
 					"-lmarsyas",
-					"-lmarsyas-qt5",
 				);
 			};
 			name = Development;
@@ -216,7 +228,6 @@
 					JitterAPI,
 					"$(C74_SYM_LINKER_FLAGS)",
 					"-lmarsyas",
-					"-lmarsyas-qt5",
 				);
 			};
 			name = Deployment;

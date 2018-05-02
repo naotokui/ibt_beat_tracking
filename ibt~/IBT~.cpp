@@ -176,20 +176,19 @@ MarSystem* MarMaxIBT::createMarsyasNet()
 	//featureNetwork->addMarSystem(featExtractor);
 	ibt->addMarSystem(featureNetwork);
 
-	/*
-	//======================TEST PARAMETERS - SAVE IN TXT FILE=========================
-	ostringstream oss;
-	fstream outStream;
-	oss << "parameters.txt";
-	outStream.open(oss.str().c_str(), ios::out|ios::trunc);
-	outStream << "induction_time: " << induction_time << endl;
-	outStream << "nr_agents: " << nr_agents << endl;
-	outStream << "out: " << output_flag << "; output: " << output << endl;
-	outStream << "minbpm: " << min_bpm << endl;
-	outStream << "maxbpm: " << max_bpm << endl;
-	outStream.close();
-	//=====================================================
-	*/
+////	======================TEST PARAMETERS - SAVE IN TXT FILE=========================
+//	ostringstream oss;
+//	fstream outStream;
+//	oss << "parameters.txt";
+//	outStream.open(oss.str().c_str(), ios::out|ios::trunc);
+//	outStream << "induction_time: " << induction_time << endl;
+//	outStream << "nr_agents: " << nr_agents << endl;
+//	outStream << "out: " << output_flag << "; output: " << output << endl;
+//	outStream << "minbpm: " << min_bpm << endl;
+//	outStream << "maxbpm: " << max_bpm << endl;
+//	outStream.close();
+////	=====================================================
+
 
   // src has to be configured with hopSize frame length in case a
   // ShiftInput is used in the feature extraction network
@@ -732,9 +731,9 @@ MarSystem* MarMaxIBT::createMarsyasNet()
 	acoeffs(2) = 0.2946;
 	beattracker->updControl("Series/normfiltering/Filter/filt1/mrs_realvec/dcoeffs", acoeffs);
 	
-	//cout << "Ind: " << inductionTickCount << "; fsSrc: " << fsSrc << "; adj: " << adjustment << "; hop: " << (int)stepSize << endl;
-	//cout << "Win: " << blockSize << "; SI_InS: " << beattracker->getctrl("Series/onsetdetectionfunction/ShiftInput/si/mrs_natural/inSamples")->to<mrs_natural>() << endl;
-	//cout << "ACC: " << beattracker->getctrl("ShiftInput/acc/mrs_natural/winSize")->to<mrs_natural>() << endl;
+	cout << "Ind: " << inductionTickCount << "; fsSrc: " << fsSrc << "; adj: " << adjustment << "; hop: " << (int)stepSize << endl;
+	cout << "Win: " << blockSize << "; SI_InS: " << beattracker->getctrl("Series/onsetdetectionfunction/ShiftInput/si/mrs_natural/inSamples")->to<mrs_natural>() << endl;
+	cout << "ACC: " << beattracker->getctrl("ShiftInput/acc/mrs_natural/winSize")->to<mrs_natural>() << endl;
 
 	return ibt;
 }

@@ -14,7 +14,8 @@ int C74_EXPORT main(void)
 	c = class_new("ibt~", (method)MarMax_new, (method)dsp_free, (long)sizeof(t_MarMax), (method)0L, A_GIMME, 0);
 	
 	class_addmethod(c, (method)MarMax_float,		"float",	A_FLOAT, 0);
-	class_addmethod(c, (method)MarMax_dsp,		"dsp",		A_CANT, 0);
+    class_addmethod(c, (method)MarMax_dsp,		"dsp",		A_CANT, 0);
+    class_addmethod(c, (method)MarMax_dsp64,		"dsp64",		A_CANT, 0);
 	class_addmethod(c, (method)MarMax_assist,	"assist",	A_CANT, 0);
 	//for parameters defined as messages in the first inlet
 	//class_addmethod(c, (method)MarMax_window,		"window",	A_FLOAT,	A_FLOAT, 0);
@@ -46,6 +47,102 @@ void MarMax_dsp(t_MarMax *x, t_signal **sp, short *count)
 	//dsp_add(MarMax_perform, 3, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
 	dsp_add(MarMax_perform, 3, x, sp[0]->s_vec, sp[0]->s_n);
 }
+
+
+void MarMax_perform64(t_MarMax *x, t_object *dsp64, double **ins, long numins, double **outs, long numouts, long sampleframes, long flags, void *userparam)
+{
+    // DO NOT CALL post IN HERE, but you can call defer_low (not defer)
+    
+    // args are in a vector, sized as specified in MarMax_dsp method
+    // w[0] contains &MarMax_perform, so we start at w[1]
+//    t_MarMax *x = (t_MarMax *)(w[1]);
+    t_double *inL = ins[0];//(t_float *)(w[2]);
+    //t_float *outL = (t_float *)(w[3]);
+    int vectorSize = sampleframes; //(int)w[3];
+    //int vectorSize = (int)w[4];
+    int i;
+    bool Nozero = false;
+    realvec output_realvec;
+    int output_tempo, curMedianTempo = 0;
+    
+    //to check if input is empty -> don't know exactly why when no input is loaded
+    //into Marsystem the network stucks in steady-state
+    //(suppose it has to do with how RealvecSource deals with the input)
+    for ( i = 0; i < vectorSize; ++i)
+    {
+        if (inL[i] != 0.)
+        {
+            Nozero = true;
+            break;
+        }
+    }
+    
+//    post("Nozero: %d", Nozero);
+    
+    if (Nozero)
+    {
+        int j;
+        for (j = 0; j < vectorSize; j++) {
+            
+            r(x->pos) = inL[j];
+            
+            /*time to do something */
+            if (x->pos == x->hopsize - 1) {
+                /* block loop */
+                
+                // Load the network with the data
+                x->m_MarsyasNetwork->updControl("Series/featureNetwork/RealvecSource/src/mrs_realvec/data", r);
+                // post ("network feeded");
+                // Tick the network once, which will process one window of data
+                
+                x->m_MarsyasNetwork->tick();
+//                post ("processing done");
+                
+                // Get the data out of the network -> beat events
+                output_realvec = x->m_MarsyasNetwork->getControl("Series/featureNetwork/FlowThru/beattracker/mrs_realvec/innerOut")->to<mrs_realvec>();
+//                post("output vector copied %d",   output_realvec.getSize());
+                
+                // Get the data out of the network -> median tempo
+                output_tempo = (int) x->m_MarsyasNetwork->getControl("Series/featureNetwork/FlowThru/beattracker/BeatTimesSink/sink/mrs_natural/curMedianTempo")->to<mrs_natural>();
+                if(output_tempo > 0) curMedianTempo = output_tempo;
+                
+//                post("tempo: %d", curMedianTempo);
+                outlet_int(x->outletTempo, curMedianTempo); // signal outlet (note "signal" rather than NULL)
+                
+//                post("output vector copied");
+                
+                //if (output_realvec(0,0))
+                  //  outlet_bang (x->outletBeat);
+                
+                //if(output_realvec(0,0))
+                //	post("BEAT!");
+                
+                /* end of block loop */
+                x->pos = -1; /* so it will be zero next j loop */
+            }
+            
+            x->pos++;
+        }
+    }
+}
+
+// this function is called when the DAC is enabled, and "registers" a function
+// for the signal chain. in this case, "MarMax_perform"
+void MarMax_dsp64(t_MarMax *x, t_object *dsp64, short *count, double samplerate, long maxvectorsize, long flags)
+{
+    //post("my sample rate is: %f; inPointer: %d; outPointer: %d; vector size: %d", sp[0]->s_sr, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+    x->d_SR = samplerate;
+    // dsp_add
+    // 1: (t_perfroutine p) perform method
+    // 2: (long argc) number of args to your perform method
+    // 3...: argc additional arguments, all must be sizeof(pointer) or long
+    // these can be whatever, so you might want to include your object pointer in there
+    // so that you have access to the info, if you need it.
+    //dsp_add(MarMax_perform, 3, x, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+//    dsp_add(MarMax_perform, 3, x, sp[0]->s_vec, sp[0]->s_n);
+    object_method(dsp64, gensym("dsp_add64"), x, MarMax_perform64, 0, NULL);
+}
+
 
 t_int *MarMax_perform(t_int *w)
 {
@@ -98,12 +195,13 @@ t_int *MarMax_perform(t_int *w)
 
 				// Get the data out of the network -> beat events
 				output_realvec = x->m_MarsyasNetwork->getControl("Series/featureNetwork/FlowThru/beattracker/mrs_realvec/innerOut")->to<mrs_realvec>();
-
+                
+                
+                
 				// Get the data out of the network -> median tempo
 				output_tempo = (int) x->m_MarsyasNetwork->getControl("Series/featureNetwork/FlowThru/beattracker/BeatTimesSink/sink/mrs_natural/curMedianTempo")->to<mrs_natural>();
 				if(output_tempo > 0) curMedianTempo = output_tempo;
-				
-				//post("tempo: %d", curMedianTempo);
+				post("tempo: %d", curMedianTempo);
 				outlet_int(x->outletTempo, curMedianTempo); // signal outlet (note "signal" rather than NULL)
 
 				//post("output vector copied");
@@ -231,8 +329,8 @@ void *MarMax_new(t_symbol *s, long argc, t_atom *argv)
 		x->outletTempo = intout(x); // int outlet for tempo
 		x->outletBeat = bangout(x);	//an outlet that can only output bangs (nothing else)
 
-		//post("winSize: %d; hopSize: %d; fs: %f; inductionTime: %f; minBPM: %d, maxBPM: %d; outPathName: %s", 
-		//	x->bufsize, x->hopsize, x->d_SR, x->inductionTime, x->minBPM, x->maxBPM, x->outPathName);
+		post("winSize: %d; hopSize: %d; fs: %f; inductionTime: %f; minBPM: %d, maxBPM: %d; outPathName: %s",
+                x->bufsize, x->hopsize, x->d_SR, x->inductionTime, x->minBPM, x->maxBPM, x->outPathName);
 
 		//Create the MarSystem Network
 		x->ibt = new MarMaxIBT(x->bufsize, x->hopsize, 44100.0, x->inductionTime, x->minBPM, x->maxBPM, x->outPathName, x->stateRecovery);
