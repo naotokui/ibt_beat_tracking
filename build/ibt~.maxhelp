@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 1,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 127.0, 87.0, 1158.0, 828.0 ],
+		"rect" : [ 359.0, 82.0, 1158.0, 828.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,55 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"basictuning" : 440,
+					"data" : 					{
+						"clips" : [ 							{
+								"absolutepath" : "C:/Users/nao/Documents/Splice/Samples/packs/Ambient Flow - Downtempo & Chill/Origin_Sound_-_Ambient_Flow/Drum_Loops/KickSnare/OS_ABF_115_Drum_Loop_9__KickSnare_.wav",
+								"filename" : "OS_ABF_115_Drum_Loop_9__KickSnare_.wav",
+								"filekind" : "audiofile",
+								"id" : "u858000639",
+								"selection" : [ 0.0, 1.0 ],
+								"loop" : 1,
+								"content_state" : 								{
+									"loop" : 1
+								}
+
+							}
+ ]
+					}
+,
+					"followglobaltempo" : 0,
+					"formantcorrection" : 0,
+					"id" : "obj-21",
+					"maxclass" : "playlist~",
+					"mode" : "basic",
+					"numinlets" : 1,
+					"numoutlets" : 5,
+					"originallength" : [ 0.0, "ticks" ],
+					"originaltempo" : 120.0,
+					"outlettype" : [ "signal", "signal", "signal", "", "dictionary" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 294.0, 244.0, 150.0, 30.0 ],
+					"pitchcorrection" : 0,
+					"quality" : "basic",
+					"timestretch" : [ 0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 3,
+					"outlettype" : [ "signal", "signal", "bang" ],
+					"patching_rect" : [ 338.0, 179.0, 1131.0, 22.0 ],
+					"text" : "sfplay~ 2 @audiofile \"C:/Users/nao/Documents/Splice/Samples/packs/Ambient Flow - Downtempo & Chill/Origin_Sound_-_Ambient_Flow/Drum_Loops/KickSnare/OS_ABF_115_Drum_Loop_9__KickSnare_.wav\""
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"format" : 6,
 					"id" : "obj-19",
 					"maxclass" : "flonum",
@@ -60,7 +109,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 95.0, 70.0, 508.0, 33.0 ],
+					"patching_rect" : [ 95.0, 70.0, 508.0, 34.0 ],
 					"text" : "Based on: João Lobato Oliveira, Fabien Gouyon, Luis Gustavo Martins, Luís Paulo Reis,\n\"IBT: A Real-time Tempo and Beat Tracking System.\" ISMIR 2010: 291-296"
 				}
 
@@ -73,7 +122,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 286.0, 602.0, 418.0, 19.0 ],
+					"patching_rect" : [ 286.0, 602.0, 418.0, 20.0 ],
 					"text" : "Licenced under the GPL - Copyright 2007 - as part of MARSYAS (marsyas.info)",
 					"varname" : "autohelp_top_description[1]"
 				}
@@ -120,7 +169,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 777.5, 131.0, 406.0, 261.0 ],
+					"patching_rect" : [ 777.5, 131.0, 406.0, 269.0 ],
 					"text" : "Inlet: Audio signal in the form of sound file or microphone input\nOutlet1: Bangs on the beat\nOutlet2: Median tempo (BPM) of the last 10 beats\n\nUsage (no specific order):\nibt~ [@winSize #] [@hopSize #] [@inductionTime #] [@minBPM #] [@maxBPM #] [@stateRecovery] [@outPathName #]\n\nParameters [default]:\n- @winSize: processing buffer size for the FFT window [1024]\n- @hopSize: hop size for processing overlap [512]\n- @inductionTime: duration of tempo induction stage (sec) [5.0]\n- @minBPM: minimum tempo limit (BPM) [81 -> to prevent octave error]\n- @maxBPM: maximum tempo limit (BPM) [160 -> to prevent octave error]\n- @stateRecovery: activates state-recovery by re-inducing and resetting the system whenever tracking seems to be lost - ideal for streaming scenarios (0-true/1-false) [0-false]\n- @outPathName: file/path name for outputing .txt with beat-times and median tempo [don't output files]"
 				}
 
@@ -134,7 +183,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 367.0, 535.0, 261.0, 60.0 ],
+					"patching_rect" : [ 367.0, 535.0, 261.0, 62.0 ],
 					"text" : "Developed by the SMCGroup @ INESC Porto\n              website: smc.inescporto.pt\nImplementation by João Lobato Oliveira \n              contact: jmldso@gmail.com"
 				}
 
@@ -159,7 +208,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.0, 123.0, 257.0, 33.0 ],
+					"patching_rect" : [ 27.0, 123.0, 257.0, 34.0 ],
 					"text" : "Load an audio file\n(or connect the adc~ object to the ibt~ object)"
 				}
 
@@ -251,12 +300,11 @@
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-9",
-					"linecount" : 2,
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "bang", "float" ],
-					"patching_rect" : [ 121.0, 286.0, 326.0, 35.0 ],
+					"outlettype" : [ "bang", "int" ],
+					"patching_rect" : [ 121.0, 286.0, 568.0, 22.0 ],
 					"text" : "ibt~ @winSize 1024 @hopSize 512 @inductionTime 5. @minBPM 81 @maxBPM 160 @stateRecovery 0"
 				}
 
@@ -369,6 +417,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"order" : 1,
+					"source" : [ "obj-21", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"order" : 0,
+					"source" : [ "obj-21", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-8", 1 ],
 					"source" : [ "obj-3", 0 ]
 				}
@@ -420,8 +484,15 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "ibt~.mxo",
-				"type" : "iLaX"
+				"name" : "OS_ABF_115_Drum_Loop_9__KickSnare_.wav",
+				"bootpath" : "~/Documents/Splice/Samples/packs/Ambient Flow - Downtempo & Chill/Origin_Sound_-_Ambient_Flow/Drum_Loops/KickSnare",
+				"patcherrelativepath" : "../../../Splice/Samples/packs/Ambient Flow - Downtempo & Chill/Origin_Sound_-_Ambient_Flow/Drum_Loops/KickSnare",
+				"type" : "WAVE",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "ibt~.mxe64",
+				"type" : "mx64"
 			}
  ],
 		"autosave" : 0
