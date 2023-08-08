@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 4,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 359.0, 82.0, 1158.0, 828.0 ],
+		"rect" : [ 359.0, 106.0, 1150.0, 706.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,50 +40,65 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"basictuning" : 440,
-					"data" : 					{
-						"clips" : [ 							{
-								"absolutepath" : "C:/Users/nao/Documents/Splice/Samples/packs/Ambient Flow - Downtempo & Chill/Origin_Sound_-_Ambient_Flow/Drum_Loops/KickSnare/OS_ABF_115_Drum_Loop_9__KickSnare_.wav",
-								"filename" : "OS_ABF_115_Drum_Loop_9__KickSnare_.wav",
-								"filekind" : "audiofile",
-								"id" : "u858000639",
-								"selection" : [ 0.0, 1.0 ],
-								"loop" : 1,
-								"content_state" : 								{
-									"loop" : 1
-								}
-
-							}
- ]
-					}
-,
-					"followglobaltempo" : 0,
-					"formantcorrection" : 0,
-					"id" : "obj-21",
-					"maxclass" : "playlist~",
-					"mode" : "basic",
+					"bubble" : 1,
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-38",
+					"maxclass" : "comment",
 					"numinlets" : 1,
-					"numoutlets" : 5,
-					"originallength" : [ 0.0, "ticks" ],
-					"originaltempo" : 120.0,
-					"outlettype" : [ "signal", "signal", "signal", "", "dictionary" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 294.0, 244.0, 150.0, 30.0 ],
-					"pitchcorrection" : 0,
-					"quality" : "basic",
-					"timestretch" : [ 0 ]
+					"numoutlets" : 0,
+					"patching_rect" : [ 332.0, 273.0, 69.0, 25.0 ],
+					"text" : "Beat!"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-16",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 3,
-					"outlettype" : [ "signal", "signal", "bang" ],
-					"patching_rect" : [ 338.0, 179.0, 1131.0, 22.0 ],
-					"text" : "sfplay~ 2 @audiofile \"C:/Users/nao/Documents/Splice/Samples/packs/Ambient Flow - Downtempo & Chill/Origin_Sound_-_Ambient_Flow/Drum_Loops/KickSnare/OS_ABF_115_Drum_Loop_9__KickSnare_.wav\""
+					"bubble" : 1,
+					"fontname" : "Arial",
+					"fontsize" : 13.0,
+					"id" : "obj-21",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 574.0, 264.0, 80.0, 40.0 ],
+					"text" : "Average tempo"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-37",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 410.0, 444.0, 150.0, 20.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-35",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 465.0, 274.0, 35.0, 20.0 ],
+					"text" : "BPM"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"fontname" : "Arial",
+					"fontsize" : 11.595186999999999,
+					"id" : "obj-23",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 766.0, 629.0, 338.0, 19.0 ],
+					"text" : "Edited and compiled for Max/MSP 64bit SDK by Nao Tokui 2023",
+					"varname" : "autohelp_top_description[2]"
 				}
 
 			}
@@ -96,7 +111,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 428.0, 332.0, 62.0, 22.0 ]
+					"patching_rect" : [ 502.0, 273.0, 62.0, 22.0 ]
 				}
 
 			}
@@ -109,7 +124,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 95.0, 70.0, 508.0, 34.0 ],
+					"patching_rect" : [ 20.0, 622.0, 508.0, 33.0 ],
 					"text" : "Based on: João Lobato Oliveira, Fabien Gouyon, Luis Gustavo Martins, Luís Paulo Reis,\n\"IBT: A Real-time Tempo and Beat Tracking System.\" ISMIR 2010: 291-296"
 				}
 
@@ -122,7 +137,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 286.0, 602.0, 418.0, 20.0 ],
+					"patching_rect" : [ 686.0, 605.0, 418.0, 19.0 ],
 					"text" : "Licenced under the GPL - Copyright 2007 - as part of MARSYAS (marsyas.info)",
 					"varname" : "autohelp_top_description[1]"
 				}
@@ -169,7 +184,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 777.5, 131.0, 406.0, 269.0 ],
+					"patching_rect" : [ 698.0, 259.5, 406.0, 261.0 ],
 					"text" : "Inlet: Audio signal in the form of sound file or microphone input\nOutlet1: Bangs on the beat\nOutlet2: Median tempo (BPM) of the last 10 beats\n\nUsage (no specific order):\nibt~ [@winSize #] [@hopSize #] [@inductionTime #] [@minBPM #] [@maxBPM #] [@stateRecovery] [@outPathName #]\n\nParameters [default]:\n- @winSize: processing buffer size for the FFT window [1024]\n- @hopSize: hop size for processing overlap [512]\n- @inductionTime: duration of tempo induction stage (sec) [5.0]\n- @minBPM: minimum tempo limit (BPM) [81 -> to prevent octave error]\n- @maxBPM: maximum tempo limit (BPM) [160 -> to prevent octave error]\n- @stateRecovery: activates state-recovery by re-inducing and resetting the system whenever tracking seems to be lost - ideal for streaming scenarios (0-true/1-false) [0-false]\n- @outPathName: file/path name for outputing .txt with beat-times and median tempo [don't output files]"
 				}
 
@@ -183,7 +198,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 367.0, 535.0, 261.0, 62.0 ],
+					"patching_rect" : [ 843.0, 537.0, 261.0, 60.0 ],
 					"text" : "Developed by the SMCGroup @ INESC Porto\n              website: smc.inescporto.pt\nImplementation by João Lobato Oliveira \n              contact: jmldso@gmail.com"
 				}
 
@@ -195,7 +210,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
-					"patching_rect" : [ 227.0, 179.0, 45.0, 45.0 ]
+					"patching_rect" : [ 164.0, 122.0, 45.0, 45.0 ]
 				}
 
 			}
@@ -208,7 +223,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 27.0, 123.0, 257.0, 34.0 ],
+					"patching_rect" : [ 20.0, 78.0, 257.0, 33.0 ],
 					"text" : "Load an audio file\n(or connect the adc~ object to the ibt~ object)"
 				}
 
@@ -222,7 +237,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 42.0, 173.0, 32.5, 22.0 ],
+					"patching_rect" : [ 35.0, 122.0, 32.5, 22.0 ],
 					"text" : "0"
 				}
 
@@ -236,7 +251,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 192.5, 430.0, 32.5, 22.0 ],
+					"patching_rect" : [ 185.5, 379.0, 32.5, 22.0 ],
 					"text" : "1"
 				}
 
@@ -249,7 +264,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 425.0, 402.0, 131.0, 131.0 ]
+					"patching_rect" : [ 243.0, 273.0, 81.0, 81.0 ]
 				}
 
 			}
@@ -262,7 +277,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 110.0, 430.0, 75.0, 22.0 ],
+					"patching_rect" : [ 103.0, 379.0, 75.0, 22.0 ],
 					"text" : "cycle~ 1000"
 				}
 
@@ -276,7 +291,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 110.0, 540.0, 36.0, 22.0 ],
+					"patching_rect" : [ 103.0, 489.0, 36.0, 22.0 ],
 					"text" : "*~ 1."
 				}
 
@@ -290,7 +305,7 @@
 					"numinlets" : 5,
 					"numoutlets" : 4,
 					"outlettype" : [ "signal", "signal", "", "" ],
-					"patching_rect" : [ 127.0, 502.0, 190.0, 22.0 ],
+					"patching_rect" : [ 120.0, 451.0, 190.0, 22.0 ],
 					"text" : "adsr~ 0 100 1 50 @maxsustain 0."
 				}
 
@@ -300,11 +315,12 @@
 					"fontname" : "Arial",
 					"fontsize" : 12.0,
 					"id" : "obj-9",
+					"linecount" : 2,
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 2,
-					"outlettype" : [ "bang", "int" ],
-					"patching_rect" : [ 121.0, 286.0, 568.0, 22.0 ],
+					"outlettype" : [ "bang", "float" ],
+					"patching_rect" : [ 185.5, 201.0, 335.5, 35.0 ],
 					"text" : "ibt~ @winSize 1024 @hopSize 512 @inductionTime 5. @minBPM 81 @maxBPM 160 @stateRecovery 0"
 				}
 
@@ -315,7 +331,7 @@
 					"maxclass" : "ezdac~",
 					"numinlets" : 2,
 					"numoutlets" : 0,
-					"patching_rect" : [ 84.0, 576.0, 45.0, 45.0 ]
+					"patching_rect" : [ 77.0, 525.0, 45.0, 45.0 ]
 				}
 
 			}
@@ -328,7 +344,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 131.0, 173.0, 32.5, 22.0 ],
+					"patching_rect" : [ 124.0, 122.0, 32.5, 22.0 ],
 					"text" : "1"
 				}
 
@@ -342,7 +358,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "bang" ],
-					"patching_rect" : [ 84.0, 217.0, 49.0, 22.0 ],
+					"patching_rect" : [ 77.0, 166.0, 49.0, 22.0 ],
 					"text" : "sfplay~"
 				}
 
@@ -356,7 +372,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 84.0, 173.0, 37.0, 22.0 ],
+					"patching_rect" : [ 77.0, 122.0, 37.0, 22.0 ],
 					"text" : "open"
 				}
 
@@ -417,22 +433,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-8", 0 ],
-					"order" : 1,
-					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-9", 0 ],
-					"order" : 0,
-					"source" : [ "obj-21", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-8", 1 ],
 					"source" : [ "obj-3", 0 ]
 				}
@@ -484,15 +484,8 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "OS_ABF_115_Drum_Loop_9__KickSnare_.wav",
-				"bootpath" : "~/Documents/Splice/Samples/packs/Ambient Flow - Downtempo & Chill/Origin_Sound_-_Ambient_Flow/Drum_Loops/KickSnare",
-				"patcherrelativepath" : "../../../Splice/Samples/packs/Ambient Flow - Downtempo & Chill/Origin_Sound_-_Ambient_Flow/Drum_Loops/KickSnare",
-				"type" : "WAVE",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "ibt~.mxe64",
-				"type" : "mx64"
+				"name" : "ibt~.mxo",
+				"type" : "iLaX"
 			}
  ],
 		"autosave" : 0
