@@ -4,16 +4,16 @@
 #include <cstdio>
 #include <cstdlib>
 #include <string>
-#include <iomanip> 
+#include <iomanip>
 
-#include "common_source.h"
-#include "MarSystemManager.h"
-#include "CommandLineOptions.h"
-#include "FileName.h"
+#include <marsyas/common_source.h>
+#include <marsyas/system/MarSystemManager.h>
+#include <marsyas/CommandLineOptions.h>
+#include <marsyas/FileName.h>
 
-#include "EvValUpd.h"
-#include "Collection.h"
-#include "NumericLib.h"
+#include <marsyas/sched/EvValUpd.h>
+#include <marsyas/Collection.h>
+#include <marsyas/NumericLib.h>
 #include <string.h>
 
 using namespace std;
@@ -30,19 +30,21 @@ using namespace Marsyas;
 class MarMaxIBT
 {
 public:
-	MarMaxIBT(mrs_natural winSize, mrs_natural hopSize, mrs_real fs, mrs_real indTime, mrs_natural minBPM, mrs_natural maxBPM, mrs_string outPathName, mrs_bool stateRecovery);
-    virtual ~MarMaxIBT();
+  MarMaxIBT(mrs_natural winSize, mrs_natural hopSize, mrs_real fs, mrs_real indTime, mrs_natural minBPM, mrs_natural maxBPM, mrs_string outPathName, mrs_bool stateRecovery);
+  virtual ~MarMaxIBT();
 
-    MarSystem* createMarsyasNet(void);
-
+  MarSystem* createMarsyasNet(void);
+  void updateSampleRate(float samplerate);
+  float getSampleRate();
+    
 protected:
-    MarSystemManager mng;
-    MarSystem* ibt;
-    MarSystem* featureNetwork;
-    MarSystem* featExtractor;
-	MarSystem* audioflow;
-	MarSystem* beattracker;
-	mrs_natural inductionTickCount;
+  MarSystemManager mng;
+  MarSystem* ibt;
+  MarSystem* featureNetwork;
+  MarSystem* featExtractor;
+  MarSystem* audioflow;
+  MarSystem* beattracker;
+  mrs_natural inductionTickCount;
 };
 
 #endif

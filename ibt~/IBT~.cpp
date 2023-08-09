@@ -95,6 +95,16 @@ MarMaxIBT::MarMaxIBT(mrs_natural winSize, mrs_natural hopSize, mrs_real fs, mrs_
 
 MarMaxIBT::~MarMaxIBT() {}
 
+void MarMaxIBT::updateSampleRate(float samplerate){
+    m_inputSampleRate = samplerate;
+}
+
+float MarMaxIBT::getSampleRate(){
+    return m_inputSampleRate;
+}
+
+
+
 MarSystem* MarMaxIBT::createMarsyasNet()
 {
   ibt = mng.create("Series", "ibt");

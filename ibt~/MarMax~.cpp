@@ -38,7 +38,6 @@ void MarMax_dsp64(t_MarMax *x, t_object *dsp64, short *count, double samplerate,
     dsp_add64(dsp64, (t_object *)x, (t_perfroutine64)MarMax_perform64, 0, NULL);
 }
 
-
 // this function is called when the DAC is enabled, and "registers" a function
 // for the signal chain. in this case, "MarMax_perform"
 //void MarMax_dsp(t_MarMax *x, t_signal **sp, short *count)
@@ -63,6 +62,14 @@ void MarMax_perform64(t_MarMax *x, t_object *dsp64, double **ins, long numins, d
   // args are in a vector, sized as specified in MarMax_dsp method
   // w[0] contains &MarMax_perform, so we start at w[1]
 //  t_MarMax *x = (t_MarMax *)(ins[1]);
+    
+    float samplerate = sys_getsr();
+    if (x->ibt->getSampleRate()!=samplerate){
+        post("resetting sample rate...");
+        x->ibt->updateSampleRate(samplerate);
+        x->m_MarsyasNetwork = x->ibt->createMarsyasNet();
+    }
+    
     t_double *inL = (t_double *)(ins[0]);
   //t_float *outL = (t_float *)(w[3]);
   int vectorSize = sampleframes;
@@ -244,7 +251,9 @@ void *MarMax_new(t_symbol *s, long argc, t_atom *argv)
     //    x->bufsize, x->hopsize, x->d_SR, x->inductionTime, x->minBPM, x->maxBPM, x->outPathName);
 
     //Create the MarSystem Network
-    x->ibt = new MarMaxIBT(x->bufsize, x->hopsize, 44100.0, x->inductionTime, x->minBPM, x->maxBPM, x->outPathName, x->stateRecovery);
+      
+    float samplerate = sys_getsr();
+    x->ibt = new MarMaxIBT(x->bufsize, x->hopsize, samplerate, x->inductionTime, x->minBPM, x->maxBPM, x->outPathName, x->stateRecovery);
     x->m_MarsyasNetwork = x->ibt->createMarsyasNet();
 
     x->offset = 0;
