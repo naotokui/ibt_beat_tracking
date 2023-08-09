@@ -1,8 +1,7 @@
 # ibt~ adaptive real-time beat tracking external object for Max/MSP
 A beat tracking external for MaxMSP.  
 
-<img src="https://raw.githubusercontent.com/naotokui/ibt_beat_tracking/master/image/screenshot.png", width="360px">
-
+![screenshot](image/screenshot.png "screenshot")
 
 Original source codes and project files are taken from: https://github.com/marsyas/marsyas/tree/master/src/marsyas_max-msp (Licensed under GPL)
 
